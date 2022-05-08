@@ -1,4 +1,4 @@
-# ubuntu-workstation
+# Linux workstation
 
 Shell script for general Debian-based Linux distributions.
 
