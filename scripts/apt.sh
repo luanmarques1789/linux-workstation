@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-source ./global/color.txt
-
 APT_PACKAGES=(
   git-all
   wget

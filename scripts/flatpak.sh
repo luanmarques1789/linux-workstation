@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-source ./global/color.txt
-
 FLATPAK_PACKAGES=(
   com.discordapp.Discord
   io.dbeaver.DBeaverCommunity

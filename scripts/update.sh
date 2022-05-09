@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-source ./global/color.txt
-
 function update() {
   printf "${BLUE}[TASK]${NO_COLOR} - Updating...\n"
   sudo apt update -y &>/dev/null
