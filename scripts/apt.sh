@@ -13,21 +13,6 @@ APT_PACKAGES=(
   openssh-server
 )
 
-function remove_locks() {
-  path1="/var/lib/dpkg/lock-frontend"
-  path2="/var/cache/apt/archives/lock"
-
-  if [[ -d $path1 ]]; then
-    sudo rm $path1 &&
-      echo "lock-frontend was removed successfully"
-  fi
-
-  if [[ -d $path2 ]]; then
-    sudo rm $path2 &&
-      echo "lock was removed successfully"
-  fi
-}
-
 function add_architectures() {
   ## architecture 32 bits ##
   sudo dpkg --add-architecture i386
