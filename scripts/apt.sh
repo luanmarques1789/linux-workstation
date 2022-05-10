@@ -11,6 +11,8 @@ APT_PACKAGES=(
   curl
   openssh-client
   openssh-server
+  neofetch
+  net-tools
 )
 
 function add_architectures() {
