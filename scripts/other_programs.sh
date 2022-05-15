@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+##############GLOBAL SCOPE##############
+source /etc/os-release
+#######################################
+
 function validate_pkg() {
   local package=$1
 
@@ -12,9 +16,9 @@ function validate_pkg() {
 }
 
 function install_nodejs() {
-  local package=nodejs
+  local package='nodejs'
 
-  if ! dpkg -l | grep -q "$package"; then
+  if ! dpkg -l | grep -q "\s\b$package\s\b"; then
     printf "${BLUE}[TASK]${NO_COLOR} - Installing ${ORANGE}$package${NO_COLOR}...\n"
     curl -fsSL https://deb.nodesource.com/setup_18.x &>/dev/null | sudo -E bash - &&
       sudo apt install -y $package &>/dev/null
@@ -31,8 +35,6 @@ function install_mysql() {
 
   if ! dpkg -l | grep -q "$package"; then
     printf "${BLUE}[TASK]${NO_COLOR} - Installing ${ORANGE}$package${NO_COLOR}...\n"
-
-    source /etc/os-release
 
     # specific installation for Linux distro XYZ
     if [[ $ID == 'debian' ]]; then
@@ -62,10 +64,7 @@ function install_virtualbox() {
   if ! dpkg -l | grep -q "$package"; then
     printf "${BLUE}[TASK]${NO_COLOR} - Installing ${ORANGE}$package${NO_COLOR}...\n"
 
-    source /etc/os-release
-    mydist=$VERSION_CODENAME
-
-    sudo add-apt-repository "deb [arch=amd64] https://download.virtualbox.org/virtualbox/debian ${mydist} contrib" &&
+    sudo add-apt-repository "deb [arch=amd64] https://download.virtualbox.org/virtualbox/debian ${VERSION_CODENAME} contrib" &&
       sudo apt install -y "$package" &>/dev/null
 
     validate_pkg $package
@@ -76,6 +75,6 @@ function install_virtualbox() {
 }
 
 remove_locks && update && upgrade
-# install_nodejs
-# install_mysql
+install_nodejs
+install_mysql
 install_virtualbox
