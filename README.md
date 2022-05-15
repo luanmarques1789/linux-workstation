@@ -1,23 +1,17 @@
 # Linux workstation
 
-Shell script for general Debian-based Linux distributions.
+Downloader and installer utility of packages for Debian-based Linux distributions
 
 Tested on:
 
-- GNU bash 5.1.8
+- Debian 11 (_bullseye_) (GNU bash 5.1.4)
+- pop!\_OS 22.04 (_jammy_) (GNU bash 5.1.16)
+- pop!\_OS 21.10 (_impish_) (GNU bash 5.1.8)
 
 # How to use
 
 Inside project directory, run:
 
 ```bash
-chmod +x setup.sh # execution permission
-./setup.sh # run main script and let magic happen
-
-```
-
-or (with root permissions):
-
-```bash
-source setup.sh # shorter xD
+sudo bash setup.sh # run main script and let magic happen
 ```
