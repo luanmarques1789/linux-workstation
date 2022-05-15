@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 function validate_pkg() {
-  package=$1
+  local package=$1
 
   if dpkg -l | grep -q "$package"; then
     printf "${GREEN}[SUCCESS]${NO_COLOR} - package ${ORANGE}$package${NO_COLOR} was installed successfully!\n"
@@ -12,7 +12,7 @@ function validate_pkg() {
 }
 
 function install_nodejs() {
-  package=nodejs
+  local package=nodejs
 
   if ! dpkg -l | grep -q "$package"; then
     printf "${BLUE}[TASK]${NO_COLOR} - Installing ${ORANGE}$package${NO_COLOR}...\n"
@@ -27,7 +27,7 @@ function install_nodejs() {
 }
 
 function install_mysql() {
-  package="mysql-server"
+  local package="mysql-server"
 
   if ! dpkg -l | grep -q "$package"; then
     printf "${BLUE}[TASK]${NO_COLOR} - Installing ${ORANGE}$package${NO_COLOR}...\n"
@@ -56,6 +56,26 @@ function install_mysql() {
   fi
 }
 
+function install_virtualbox() {
+  package='virtualbox'
+
+  if ! dpkg -l | grep -q "$package"; then
+    printf "${BLUE}[TASK]${NO_COLOR} - Installing ${ORANGE}$package${NO_COLOR}...\n"
+
+    source /etc/os-release
+    mydist=$VERSION_CODENAME
+
+    sudo add-apt-repository "deb [arch=amd64] https://download.virtualbox.org/virtualbox/debian ${mydist} contrib" &&
+      sudo apt install -y "$package" &>/dev/null
+
+    validate_pkg $package
+  else
+    printf "${PURPLE}[INFO]${NO_COLOR} - package ${ORANGE}$package${NO_COLOR} is already installed!\n"
+  fi
+
+}
+
 remove_locks && update && upgrade
-install_nodejs
-install_mysql
+# install_nodejs
+# install_mysql
+install_virtualbox
