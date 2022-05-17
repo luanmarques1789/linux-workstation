@@ -2,8 +2,6 @@
 
 Downloader and installer utility of packages for Debian-based Linux distributions.
 
-<br/>
-
 # How to use
 
 Inside project directory, run:
@@ -13,8 +11,6 @@ sudo bash setup.sh # run main script and let magic happen
 ```
 
 ## Terminal print
-
-<br/>
 
 Script output in terminal for example:
 
