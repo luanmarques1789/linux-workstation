@@ -3,8 +3,8 @@
 #####################################################################
 # AUTHOR: Luan Matheus Marques <luanmarques1789@gmail.com>
 # NAME: Linux workstation setup
-# VERSION: 0.1v
-# REPO: https://github.com/luanmarques1789/linux-workstation
+# VERSION: v0.1
+# OFFICIAL REPOSITORY: https://github.com/luanmarques1789/linux-workstation
 # DESCRIPTION: Downloader and intaller utility of packages for
 # Debian-based Linux distributions
 #####################################################################
