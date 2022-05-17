@@ -1,18 +1,29 @@
 #!/usr/bin/env bash
 
 function remove_locks() {
-  path1="/var/lib/dpkg/lock-frontend"
-  path2="/var/cache/apt/archives/lock"
+  local path1="/var/lib/dpkg/lock-frontend"
+  local path2="/var/cache/apt/archives/lock"
+  local path3="/var/lib/apt/lists/lock"
+  local path4="/var/lib/dpkg/lock"
 
   if [[ -d $path1 ]]; then
-    sudo rm $path1 &&
-      printf "lock-frontend was removed successfully\n"
+    sudo rm $path1 || printf "${RED}[ERROR]${NO_COLOR} - failed removing $path1"
   fi
 
   if [[ -d $path2 ]]; then
-    sudo rm $path2 &&
-      printf "lock was removed successfully\n"
+    sudo rm $path2 || printf "${RED}[ERROR]${NO_COLOR} - failed removing $path2"
   fi
+
+  if [[ -d $path3 ]]; then
+    sudo rm $path3 || printf "${RED}[ERROR]${NO_COLOR} - failed removing $path3"
+  fi
+
+  if [[ -d $path4 ]]; then
+    sudo rm $path4 || printf "${RED}[ERROR]${NO_COLOR} - failed removing $path4"
+  fi
+
+  # reconfigure the packages
+  sudo dpkg --configure -a
 }
 
 function update() {
