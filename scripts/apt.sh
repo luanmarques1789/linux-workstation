@@ -29,7 +29,7 @@ function apt_install() {
   add_architectures
 
   for package in ${APT_PACKAGES[@]}; do
-    if ! dpkg -l | grep -q "$package"; then
+    if ! dpkg -l | grep -q "\b$package\b"; then
       printf "${BLUE}[TASK]${NO_COLOR} - Installing ${ORANGE}$package${NO_COLOR}...\n"
       sudo apt install -y $package &>/dev/null
 
