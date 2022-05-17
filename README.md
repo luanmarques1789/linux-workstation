@@ -1,12 +1,8 @@
 # Linux workstation
 
-Downloader and installer utility of packages for Debian-based Linux distributions
+Downloader and installer utility of packages for Debian-based Linux distributions.
 
-Tested on:
-
-- Debian 11 (_bullseye_) (GNU bash 5.1.4)
-- pop!\_OS 22.04 (_jammy_) (GNU bash 5.1.16)
-- pop!\_OS 21.10 (_impish_) (GNU bash 5.1.8)
+<br/>
 
 # How to use
 
@@ -15,3 +11,19 @@ Inside project directory, run:
 ```bash
 sudo bash setup.sh # run main script and let magic happen
 ```
+
+## Terminal print
+
+<br/>
+
+Script output in terminal for example:
+
+![script output](./assets/terminal-print.png)
+
+# TESTED ON
+
+| **Distro** | **Codename** | **Version** | **GNU Bash** |
+| ---------- | ------------ | ----------- | ------------ |
+| Debian     | _bullseye_   | 11          | 5.1.4        |
+| PopOS      | _jammy_      | 22.04       | 5.1.16       |
+| PopOS      | _impish_     | 21.10       | 5.1.8        |
