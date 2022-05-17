@@ -22,18 +22,15 @@ function add_architectures() {
 
 function apt_install() {
   remove_locks &&
-    (
-      . ./scripts/update.sh
-      clear_setup
-    )
+    clear_setup
   add_architectures
 
   for package in ${APT_PACKAGES[@]}; do
-    if ! dpkg -l | grep -q "\b$package\b"; then
+    if ! dpkg -l | grep -q "\s\b${package}\b\s"; then
       printf "${BLUE}[TASK]${NO_COLOR} - Installing ${ORANGE}$package${NO_COLOR}...\n"
       sudo apt install -y $package &>/dev/null
 
-      if dpkg -l | grep -q "$package"; then
+      if dpkg -l | grep -q "\s\b${package}\b\s"; then
         printf "${GREEN}[SUCCESS]${NO_COLOR} - package ${ORANGE}$package${NO_COLOR} was installed successfully!\n"
       else
         printf "${RED}[ERROR]${NO_COLOR} - package ${ORANGE}$package${NO_COLOR} was not installed successfully!\n"

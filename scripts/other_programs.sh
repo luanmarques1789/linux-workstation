@@ -7,7 +7,7 @@ source /etc/os-release
 function validate_pkg() {
   local package=$1
 
-  if dpkg -l | grep -q "$package"; then
+  if dpkg -l | grep -q "\s\b${package}\b\s"; then
     printf "${GREEN}[SUCCESS]${NO_COLOR} - package ${ORANGE}$package${NO_COLOR} was installed successfully!\n"
   else
     printf "${RED}[ERROR]${NO_COLOR} - package ${ORANGE}$package${NO_COLOR} was not installed successfully!\n"
@@ -18,7 +18,7 @@ function validate_pkg() {
 function install_nodejs() {
   local package='nodejs'
 
-  if ! dpkg -l | grep -q "\s\b$package\s\b"; then
+  if ! dpkg -l | grep -q "\s\b${package}\b\s"; then
     printf "${BLUE}[TASK]${NO_COLOR} - Installing ${ORANGE}$package${NO_COLOR}...\n"
     curl -fsSL https://deb.nodesource.com/setup_18.x &>/dev/null | sudo -E bash -
     sudo apt install -y $package &>/dev/null
