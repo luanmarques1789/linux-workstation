@@ -13,6 +13,7 @@ APT_PACKAGES=(
   openssh-server
   neofetch
   net-tools
+  gparted
 )
 
 function add_architectures() {
