@@ -5,8 +5,6 @@ APT_PACKAGES=(
   wget
   php
   apache2
-  flatpak
-  gnome-software-plugin-flatpak
   apt-transport-https
   curl
   openssh-client
@@ -14,6 +12,7 @@ APT_PACKAGES=(
   neofetch
   net-tools
   gparted
+  flameshot
 )
 
 function add_architectures() {

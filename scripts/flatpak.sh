@@ -5,13 +5,24 @@ FLATPAK_PACKAGES=(
   io.dbeaver.DBeaverCommunity
   org.mozilla.Thunderbird
   org.gnome.DejaDup.Locale
-  org.flameshot.Flameshot
   com.spotify.Client
 )
 
+function pre_install() {
+  sudo apt update
+  sudo apt upgrade -y
+  sudo apt install -y flatpak gnome-software-plugin-flatpak
+
+  # adding flathub's repo
+  sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+  flatpak remote-add --if-not-exists --user flathub https://flathub.org/repo/flathub.flatpakrepo
+}
+
 function flatpak_add() {
   app=$1
-  sudo flatpak install -y flathub $app &>/dev/null
+
+  # don't use `sudo` command
+  flatpak install -y --user flathub $app &>/dev/null
 }
 
 function install_flatpak_apps() {
@@ -32,5 +43,5 @@ function install_flatpak_apps() {
   done
 }
 
-sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+pre_install
 install_flatpak_apps
